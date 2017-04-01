@@ -1,0 +1,118 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MPAll.master.cs" Inherits="MPAll" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+ <meta charset="utf-8" />
+    <title>Share a fractal</title>
+        <meta name="description" content="Fractal Forum website">
+    <link href="~/Styles/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/forum.css" rel="stylesheet" type="text/css"/>
+     
+    <link href="style.css" rel="stylesheet"  type="text/css"/>
+    
+    <script src="Scripts/jquery-1.4.1-vsdoc.js"></script>
+    <script src="Scripts/jquery-1.11.2.min.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>        
+    <script src="Scripts/helpers.js"></script>
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div id="header" class="page">
+            <header>
+                 <div class="headl">     
+                    <hgroup>
+                        <h1 style="margin-top:25px">Share a fractal</h1>
+                    </hgroup>
+                 </div>
+
+        <div class="headr">
+          <!-- nav start -->
+             <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                <LoggedInTemplate>
+                    <span style="float:right">
+                        <h4> <i>Bine ai venit </i>, 
+                            <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        </h4>
+                    </span>
+                 </LoggedInTemplate>
+            </asp:LoginView>
+         </div>
+        
+        <nav class="nav">
+             <ul>
+             
+                  <h4 style="margin-left:90px; margin-top:15px">&nbsp;</h4>
+                  <p style="margin-left:90px; margin-top:15px">&nbsp; </p>  
+               
+                    <li> <a href="Default.aspx">Acasa</a></li>
+                    <li> <a href="Gallery.aspx">Galerie</a></li> 
+                    <li> <a href="Search.aspx">Cautare</a></li> 
+                    <li> <a href="ContactUs.aspx">Contact</a></li>
+    
+                  <h4 style="margin-left:50px; margin-top:60px">   
+                 <asp:LoginView ID="LoginView1" runat="server">
+                    <RoleGroups>
+                        <asp:RoleGroup Roles="Admin">
+                            <ContentTemplate>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/UserProfile.aspx">Profilul meu</asp:HyperLink> 
+                                </li>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/UserPermissions.aspx">Administrare</asp:HyperLink> 
+                                </li>
+                                <li>
+                                     <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Deconectare" LogoutPageUrl="~/"/>
+                                </li>
+                            </ContentTemplate>
+                        </asp:RoleGroup>        
+                    </RoleGroups>
+
+                    <LoggedInTemplate>
+                        <li>
+                            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/UserProfile.aspx">Profilul meu</asp:HyperLink> 
+                        </li>
+                        <li>
+                            <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Deconectare" LogoutPageUrl="~/"/>
+                        </li>
+                       
+                    </LoggedInTemplate>
+                    
+                    <AnonymousTemplate>
+                        <li>
+                            <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Autentificare</a>
+                        </li>    
+                    </AnonymousTemplate>
+                </asp:LoginView>
+              </h4>     
+            </ul>
+        </nav>
+      </header>
+
+           <!-- content start -->
+        <div class="content">
+            <!-- one col -->
+            <div class="one-col separator">
+                <div class="col">
+                   <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+                </div>
+            </div>
+            <!-- ENDS one col -->
+            <!-- content end -->
+            <!-- footer start -->
+        </div>
+
+</div>
+   
+  
+    </form>
+</body>
+</html>

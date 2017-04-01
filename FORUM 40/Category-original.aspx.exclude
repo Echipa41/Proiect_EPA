@@ -1,0 +1,238 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MPAll.master" AutoEventWireup="true" CodeFile="Category-original.aspx.cs" Inherits="Category" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+
+
+</asp:Content>
+
+<asp:Content ID="Category" ContentPlaceHolderID="MainContent" Runat="Server">
+
+    <asp:SqlDataSource ID="SubjectSqlDataSource" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:DefaultConnectionString %>" 
+        SelectCommand="SELECT * FROM [Subject]">
+    </asp:SqlDataSource>
+    
+    <asp:SqlDataSource ID="PicturesSqlDataSource" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:DefaultConnectionString %>" 
+        SelectCommand="SELECT * FROM [Pictures]">
+    </asp:SqlDataSource>
+
+    <asp:SqlDataSource ID="CurrentCategorySqlDataSource" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:DefaultConnectionString %>" 
+        SelectCommand="SELECT * FROM [Category]">
+    </asp:SqlDataSource>
+    
+    <asp:SqlDataSource ID="CategorySqlDataSource" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:DefaultConnectionString %>" 
+        SelectCommand="SELECT [Id], [Name] FROM [Category]">
+    </asp:SqlDataSource>
+    
+       
+    <!--  CATEGORIA CURENTA -->
+    <h2>
+        &nbsp;<asp:Repeater ID="CategoryRepeater" runat="server" DataSourceID="CurrentCategorySqlDataSource">
+            <ItemTemplate>
+                <div>
+                    Categorie:  <%# MyDecoder.DecodeText(DataBinder.Eval(Container.DataItem, "Name").ToString()) %> 
+                </div>    
+            </ItemTemplate>    
+        </asp:Repeater>
+    </h2>
+
+    
+    <!-- SUBIETELE DIN CATEGORIA CURENTA -->
+    <div style="width:55%;float:left">
+      <asp:ListView ID="SubjectListView" runat="server" 
+        DataSourceID="SubjectSqlDataSource"
+        onitemcommand="SubjectListView_ItemCommand"
+        onItemDataBound="SubjectListView_ItemBound">
+        
+        <ItemTemplate>
+            <div>
+                <div class="panel panel-info">
+                
+                    <div class="panel-heading"> 
+                        <div class="panel-title">
+                            <span> Autor: 
+                                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# "~/UserProfile.aspx?UserName=" + DataBinder.Eval(Container.DataItem, "UserName")   %>'>
+                                    <%# DataBinder.Eval(Container.DataItem, "UserName") %>    
+                                </asp:HyperLink>
+                            </span>
+                            |<span> Data: <%# DateTime.Parse(DataBinder.Eval(Container.DataItem, "Date").ToString()).ToShortDateString() %> </span>
+                            |<span> Actualizat: <%# DateTime.Parse(DataBinder.Eval(Container.DataItem, "LastUpdate").ToString()).ToShortDateString()%> </span>
+                            |<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "~/Subject.aspx?sub_id=" + DataBinder.Eval(Container.DataItem, "Id")   %>'>
+                                Vezi mesaje    
+                              </asp:HyperLink>
+                           
+                            <span>
+                                <asp:HiddenField ID="ItemIdHF" runat="server" />
+                                <asp:LoginView ID="SubjectLoginView" runat="server" OnViewChanged="SubjectLoginView_ViewChanged">
+                                    <RoleGroups>
+                                        <asp:RoleGroup Roles="Moderator">
+                                            <ContentTemplate>                                                
+                                                <asp:DropDownList ID="EditSubjectCategory" runat="server" CssClass="select-dropdown-menu"
+                                                DataSourceID="CategorySqlDataSource" DataTextField="Name" DataValueField="Id" >
+                                                </asp:DropDownList>
+                                                <asp:Button ID="EditSubjectCategoryButton" runat="server" Text="Muta"
+                                                CommandName="EditSubjectCategory" CssClass="btn btn-default" />
+                                                <asp:Literal ID="EditSubjectCategoryResponse" runat="server"> </asp:Literal>                                                
+                                            </ContentTemplate>
+                                        </asp:RoleGroup>
+                                    </RoleGroups>
+                                </asp:LoginView>  
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-body"> 
+                        <%# MyDecoder.DecodeText(DataBinder.Eval(Container.DataItem, "Title").ToString())%> 
+                    
+                        
+                        <div ID="SubjectAuthor" runat="server" style="float:right">
+                            <div>
+                                <asp:Button ID="EditSubjectButton" runat="server" Text="Editeaza" 
+                                CommandName="EditSubject" CssClass="btn btn-default" />
+                                <asp:Button ID="DeleteSubjectButton" runat="server" Text="Sterge" 
+                                CommandName="DeleteSubject"  CssClass="btn btn-default" />
+                            </div>
+                            <div>
+                                <asp:Literal ID="EditSubjectResponse" runat="server"> </asp:Literal>
+                                <asp:Literal ID="DeleteSubjectResponse" runat="server"> </asp:Literal>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+             </div> 
+        </ItemTemplate>
+        </asp:ListView>
+    
+        <!-- PAGINATIE -->
+        <div class="pagination">
+            <asp:DataPager ID="SubjectDataPager" runat="server" 
+                PagedControlID="SubjectListView" PageSize="5">
+                <Fields>
+                   <asp:NumericPagerField />
+                </Fields>
+            </asp:DataPager>
+        </div>
+    </div>
+    
+            
+    <!-- FILTRU -->
+    <div style="position:absolute; left:60%">
+        <h1> Filtru </h1>
+        <div>
+            <div class="input-group">
+                <span class="input-group-addon"> 
+                    <asp:Label ID="SubjectUserLabel" runat="server" Text="Utilizator"></asp:Label> 
+                </span>
+                <asp:TextBox ID="SubjectUserTB" runat="server"></asp:TextBox>
+            </div>
+
+            <br />
+            
+            <div class="input-group">
+                <span class="input-group-addon"> 
+                    <asp:Label ID="SubjectTitleLabel" runat="server" Text="Titlu"></asp:Label> 
+                </span>
+                <asp:TextBox ID="SubjectTitleTB" runat="server"></asp:TextBox>
+            </div>
+            
+            <br />
+
+            <div class="input-group">
+                <asp:RadioButtonList ID="SubjectDateRBL" runat="server">
+                    <asp:ListItem Value="Ascending"> Crescator dupa data</asp:ListItem>
+                    <asp:ListItem Value="Descending">Descrescator dupa data </asp:ListItem>
+                </asp:RadioButtonList>
+            </div>
+            
+            <asp:Button ID="Button2" runat="server" Text="Cauta" ValidationGroup="SubjectFilterVG" 
+                onclick="SearchSubject_Click" CssClass="btn btn-default" />
+        </div>
+
+        <br /> <br />
+
+        <!-- ADAUGA SUBIECT -->
+        <asp:LoginView ID="AddSubjectLoginView" runat="server">
+            <LoggedInTemplate>
+            
+                <div id="EditSubjectDiv" runat="server" style="display:none">
+                    <h1> Editeaza subiect </h1>
+                    <div>
+                        <img src="Emoticons/bold.png" class="format-text" start-tag="[b]" end-tag="[/b]" />
+                        <img src="Emoticons/italic.png" class="format-text" start-tag="[i]" end-tag="[/i]" />
+                        <img src="Emoticons/underline.png" class="format-text" start-tag="[u]" end-tag="[/u]" />
+                        
+                        <img src="Emoticons/smile.png" class="emoticon" code=":D" />
+                        <img src="Emoticons/happy.png" class="emoticon" code=":)" />
+                        <img src="Emoticons/laugh.png" class="emoticon" code=":))" />
+                        <img src="Emoticons/sad.png" class="emoticon" code=":(" />
+                        <img src="Emoticons/cry.png" class="emoticon" code=":((" />
+                        <img src="Emoticons/angry.png" class="emoticon" code="~X(" />
+
+                        <asp:HiddenField ID="EditSubjectID" runat="server" />
+                        <asp:TextBox ID="EditSubjectTB" TextMode=MultiLine Rows="5" Columns="65" runat="server"></asp:TextBox>
+                    </div>
+
+                    <div>
+                        <asp:RequiredFieldValidator ID="EditSubjectRFV" runat="server" 
+                        ErrorMessage="Titlul trebuie sa fie nevid!" ControlToValidate="EditSubjectTB"
+                        ValidationGroup="EditSubjectVG"></asp:RequiredFieldValidator>
+                    </div>
+
+                    <div>
+                        <asp:Button ID="EditSubjectButton" runat="server" Text="Salveaza" 
+                            onclick="EditSubject" ValidationGroup="EditSubjectVG" CssClass="btn btn-default" />
+                        <asp:Button ID="CancelEdit" runat="server" Text="Renunta" CssClass="btn btn-default" />
+                    </div>
+
+                    <div>
+                        <asp:Literal ID="EditSubjectResponse" runat="server"> </asp:Literal>                                    
+                    </div>
+                </div>
+
+            
+                <div id="AddSubjectDiv" runat="server">
+                    <h1> Adauga subiect </h1>
+                    <div>
+                        <img src="Emoticons/bold.png" class="format-text" start-tag="[b]" end-tag="[/b]" />
+                        <img src="Emoticons/italic.png" class="format-text" start-tag="[i]" end-tag="[/i]" />
+                        <img src="Emoticons/underline.png" class="format-text" start-tag="[u]" end-tag="[/u]" />
+                        
+                        <img src="Emoticons/smile.png" class="emoticon" code=":D" />
+                        <img src="Emoticons/happy.png" class="emoticon" code=":)" />
+                        <img src="Emoticons/laugh.png" class="emoticon" code=":))" />
+                        <img src="Emoticons/sad.png" class="emoticon" code=":(" />
+                        <img src="Emoticons/cry.png" class="emoticon" code=":((" />
+                        <img src="Emoticons/angry.png" class="emoticon" code="~X(" />
+
+                        <asp:TextBox ID="TitleTB" TextMode=MultiLine Rows="5" Columns="65" runat="server"></asp:TextBox>
+                    </div>
+
+                    <div>    
+                        <asp:RequiredFieldValidator ID="TitleRFV" runat="server" 
+                        ErrorMessage="Titlul trebuie sa fie nevid!" ControlToValidate="TitleTB"
+                        ValidationGroup= "AddSubjectVG"> </asp:RequiredFieldValidator>
+                    </div>
+                    
+                    <div>
+                        <asp:Button ID="AddSubjectButton" runat="server" Text="Adauga subiect" 
+                            onclick="AddSubject" ValidationGroup="AddSubjectVG" CssClass="btn btn-default" />
+                    </div>
+                    
+                    <div>
+                        <asp:Literal ID="AddSubjectResponse" runat="server"></asp:Literal>
+                    </div>
+                </div>
+        
+            </LoggedInTemplate>
+        </asp:LoginView>
+    </div>
+
+</asp:Content>
+
+
+

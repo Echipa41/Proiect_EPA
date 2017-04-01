@@ -1,0 +1,362 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.Security;
+using System.Data.Sql;
+using System.Data.SqlClient;
+
+
+public partial class Category : System.Web.UI.Page
+{
+    protected void InitJs()
+    {
+        Button AddSubjectButton = (Button)AddSubjectLoginView.FindControl("AddSubjectButton");
+        Button EditSubjectButton = (Button)AddSubjectLoginView.FindControl("EditSubjectButton");
+        Button CancelEditButton = (Button)AddSubjectLoginView.FindControl("CancelEdit");
+
+        try
+        {
+            string EditSubjectDivID = AddSubjectLoginView.FindControl("EditSubjectDiv").ClientID.ToString();
+            string AddSubjectDivID = AddSubjectLoginView.FindControl("AddSubjectDiv").ClientID.ToString();
+            if (CancelEditButton != null)
+                CancelEditButton.OnClientClick = "return CancelEdit('" + EditSubjectDivID + "','" + AddSubjectDivID + "')";
+        }
+        catch (Exception ex) { } 
+        /*
+        if (AddSubjectButton != null)
+            AddSubjectButton.OnClientClick = "Encode(" + AddSubjectLoginView.FindControl("TitleTB").ClientID.ToString() + ")";
+        if (EditSubjectButton != null)
+            EditSubjectButton.OnClientClick = "return Encode(" + AddSubjectLoginView.FindControl("EditSubjectTB").ClientID.ToString() + ")";
+        */
+        
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        InitJs();
+
+        string autor = Request.Params["autor"];
+        string content = Request.Params["content"];
+        string order = Request.Params["order"];
+
+        if (Request.Params["cat_id"] != null)
+        {
+            Session["cat_id"] = Request.Params["cat_id"];
+            string cat_id = Session["cat_id"].ToString();
+            string author_id = Guid.Empty.ToString();
+            try { author_id = Membership.GetUser().ProviderUserKey.ToString(); }
+            catch (Exception ex) { }
+ 
+            string cmd = "SELECT Subject.Id as [Id], [Title], [Date], [LastUpdate], [UserName],"
+                + " CASE WHEN [AuthorId] = @AuthorId THEN 'Author' ELSE 'NotAuthor' END as [Editable]"
+                + " FROM [Subject]"
+                + " INNER JOIN [aspnet_Users] on [AuthorId] = [UserId]"
+                + " WHERE [CategoryId] = @CatId"
+                + " ORDER BY [DATE]";
+
+            SubjectSqlDataSource.SelectCommand = cmd;
+            SubjectSqlDataSource.SelectParameters.Clear();
+            SubjectSqlDataSource.SelectParameters.Add("CatId", cat_id);
+            SubjectSqlDataSource.SelectParameters.Add("AuthorId", author_id);
+            SubjectSqlDataSource.DataBind();
+
+            if (autor != null && content != null && order != null)
+            {
+                autor = Server.UrlDecode(autor);
+                content = Server.UrlDecode(content);
+                order = Server.UrlDecode(order);
+                SearchSubject(autor, content, order);
+            }
+  
+            cmd = "SELECT [Name] FROM [Category]"
+                + " WHERE [Id] = @CatId";
+            CurrentCategorySqlDataSource.SelectCommand = cmd;
+            CurrentCategorySqlDataSource.SelectParameters.Clear();
+            CurrentCategorySqlDataSource.SelectParameters.Add("CatId", cat_id);
+            CurrentCategorySqlDataSource.DataBind();
+        }
+        else
+        {
+            Response.Redirect("~/Default.aspx");
+        }
+    }
+
+    protected void AddSubject(object sender, EventArgs e)
+    {
+        string cat_id = Session["cat_id"].ToString();
+        string author_id = Membership.GetUser().ProviderUserKey.ToString(); 
+        TextBox TitleTB = (TextBox)AddSubjectLoginView.FindControl("TitleTB");
+        Literal AddSubjectResponse = (Literal)AddSubjectLoginView.FindControl("AddSubjectResponse");
+        
+        try 
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = SubjectSqlDataSource.ConnectionString;
+            connection.Open();
+            
+            String cmd = "INSERT INTO [Subject] ([AuthorId], [CategoryId], [Title], [Date], [LastUpdate])" 
+                + "VALUES (@AuthorId, @CategoryId, @Title, @Date, @LastUpdate)";
+            SqlCommand command = new SqlCommand(cmd, connection);
+            
+            command.Parameters.AddWithValue("AuthorId", author_id);
+            command.Parameters.AddWithValue("CategoryId", cat_id);
+            command.Parameters.AddWithValue("Title", TitleTB.Text);
+            command.Parameters.AddWithValue("Date", DateTime.Now);
+            command.Parameters.AddWithValue("LastUpdate", DateTime.Now);
+            
+            try
+            {
+                command.ExecuteNonQuery();
+                Response.Redirect("~/Category.aspx?cat_id=" + cat_id);
+            }
+            catch (SqlException sqex)
+            {
+                AddSubjectResponse.Text = sqex.Message;
+            }
+
+            connection.Close();
+        } 
+        catch(Exception ex) 
+        {
+            AddSubjectResponse.Text = ex.Message;
+        }
+    }
+
+    protected void SubjectListView_ItemBound(object sender, ListViewItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListViewItemType.DataItem)
+        {
+            LoginView SubjectLoginView = (LoginView)e.Item.FindControl("SubjectLoginView");
+            Button EditSubjectButton = (Button)e.Item.FindControl("EditSubjectButton");
+            Button DeleteSubjectButton = (Button)e.Item.FindControl("DeleteSubjectButton");
+            HiddenField ItemIdHF = (HiddenField)e.Item.FindControl("ItemIdHF");
+            Control AuthorDiv = e.Item.FindControl("SubjectAuthor");
+            
+            var dataItem = e.Item.DataItem;
+            string ItemId = Guid.Parse(DataBinder.Eval(dataItem, "Id").ToString()).ToString();
+            string ItemContent = DataBinder.Eval(dataItem, "Title").ToString();
+
+            bool ItemIsAuthor = DataBinder.Eval(dataItem, "Editable").ToString() == "Author";
+            bool ItemIsModerator = false;
+            try
+            {
+                string username = Membership.GetUser().UserName;
+                ItemIsModerator = Roles.IsUserInRole(username, "Moderator");
+            }
+            catch (Exception ex) { }
+
+
+            if (EditSubjectButton != null)
+            {
+                try
+                {
+                    string EditDiv = AddSubjectLoginView.FindControl("EditSubjectDiv").ClientID.ToString();
+                    string EditTB = AddSubjectLoginView.FindControl("EditSubjectTB").ClientID.ToString();
+                    string EditID = AddSubjectLoginView.FindControl("EditSubjectID").ClientID.ToString();
+                    string AddID = AddSubjectLoginView.FindControl("AddSubjectDiv").ClientID.ToString();
+
+                    EditSubjectButton.OnClientClick = "return ShowEdit('" + EditDiv + "','" + EditID + "','" + ItemId + "','" + EditTB + "','" + ItemContent + "','" + AddID + "')";
+                }
+                catch (Exception ex) { }
+            }
+            if (DeleteSubjectButton != null)
+                DeleteSubjectButton.CommandArgument = ItemId;
+            if (AuthorDiv != null)
+                AuthorDiv.Visible = ItemIsAuthor || ItemIsModerator;
+
+            if (ItemIdHF != null)
+                ItemIdHF.Value = ItemId;
+            SetLoginViewActions(SubjectLoginView);  
+        }
+    }
+
+    protected void SubjectListView_ItemCommand(object source, ListViewCommandEventArgs e)
+    {
+        if (e.CommandName.ToString() == "EditSubjectCategory")
+            EditSubjectCategory(source, e);
+        if (e.CommandName.ToString() == "DeleteSubject")
+            DeleteSubject(source, e);
+    }
+
+    protected void EditSubject(object source, EventArgs e)
+    {
+        HiddenField h = (HiddenField)AddSubjectLoginView.FindControl("EditSubjectID");
+        TextBox t = (TextBox)AddSubjectLoginView.FindControl("EditSubjectTB");
+        Literal EditSubjectResponse = (Literal)AddSubjectLoginView.FindControl("EditSubjectResponse");
+      
+        if (t == null) { return; }
+
+        string cat_id = Session["cat_id"].ToString();
+        string sub_id = Guid.Parse(h.Value.ToString()).ToString();
+        string title = t.Text;
+        
+        try
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = SubjectSqlDataSource.ConnectionString;
+            connection.Open();
+
+            String cmd = "UPDATE [Subject] SET [Title] = @Title, [LastUpdate] = @LastUpdate WHERE [Id] = @Id";
+            SqlCommand command = new SqlCommand(cmd, connection);
+            command.Parameters.AddWithValue("Title", title);
+            command.Parameters.AddWithValue("LastUpdate", DateTime.Now);
+            command.Parameters.AddWithValue("Id", sub_id);
+
+            try
+            {
+                command.ExecuteNonQuery();
+                Response.Redirect("~/Category.aspx?cat_id="+cat_id);
+            }
+            catch (SqlException sqex)
+            {
+                EditSubjectResponse.Text = sqex.Message;
+            }
+
+            connection.Close();
+        }
+        catch (Exception ex)
+        {
+            EditSubjectResponse.Text = ex.Message;
+        }
+    }
+
+    protected void EditSubjectCategory(object source, ListViewCommandEventArgs e)
+    {
+        Button b = (Button)e.CommandSource;
+        Literal EditSubjectCategoryResponse = (Literal)b.Parent.FindControl("EditSubjectCategoryResponse");
+        DropDownList EditSubjectCategory = (DropDownList)b.Parent.FindControl("EditSubjectCategory");
+
+        string cat_id = Session["cat_id"].ToString();
+        string new_cat_id = EditSubjectCategory.SelectedValue.ToString();
+        string sub_id = e.CommandArgument.ToString();
+               
+       
+        if (cat_id == new_cat_id)
+        {
+            EditSubjectCategoryResponse.Text = "Categoria este aceeasi!!!!";
+            return;
+        }
+
+        try
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = SubjectSqlDataSource.ConnectionString;
+            connection.Open();
+
+            String cmd = "UPDATE [Subject] SET [CategoryId] = @CatId WHERE [Id] = @Id";
+            SqlCommand command = new SqlCommand(cmd, connection);
+            command.Parameters.AddWithValue("CatId", new_cat_id);
+            command.Parameters.AddWithValue("Id", sub_id);
+
+            try
+            {
+                command.ExecuteNonQuery();
+                Response.Redirect("~/Category.aspx?cat_id="+cat_id);
+            }
+            catch (SqlException sqex)
+            {
+                EditSubjectCategoryResponse.Text = sqex.Message;
+            }
+
+            connection.Close();
+        }
+        catch (Exception ex)
+        {
+            EditSubjectCategoryResponse.Text = ex.Message;
+        }
+    }
+
+    protected void DeleteSubject(object source, ListViewCommandEventArgs e)
+    {
+        Button b = (Button)e.CommandSource;
+        Literal DeleteSubjectResponse = (Literal)b.Parent.FindControl("DeleteSubjectResponse");
+
+        string cat_id = Session["cat_id"].ToString();
+        string sub_id = e.CommandArgument.ToString();
+
+        try
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = SubjectSqlDataSource.ConnectionString;
+            connection.Open();
+
+            String cmd = "DELETE FROM [Subject] WHERE [Id] = @Id";
+            SqlCommand command = new SqlCommand(cmd, connection);
+            command.Parameters.AddWithValue("Id", sub_id);
+
+            try
+            {
+                command.ExecuteNonQuery();
+                Response.Redirect("~/Category.aspx?cat_id="+cat_id);
+            }
+            catch (SqlException sqex)
+            {
+                DeleteSubjectResponse.Text = sqex.Message;
+            }
+
+            connection.Close();
+        }
+        catch (Exception ex)
+        {
+            DeleteSubjectResponse.Text = ex.Message;
+        }
+    }
+
+    protected void SearchSubject_Click(object sender, EventArgs e)
+    {
+        string cat_id = Session["cat_id"].ToString();
+        string UserFilter = Server.UrlEncode(SubjectUserTB.Text.ToLower());
+        string TitleFilter = Server.UrlEncode(SubjectTitleTB.Text.ToLower());
+        string Order = Server.UrlEncode(SubjectDateRBL.SelectedValue.ToString());
+
+        Response.Redirect("~/Category.aspx?cat_id=" + cat_id + "&autor=" + UserFilter + "&content=" + TitleFilter + "&order=" + Order);
+    }
+
+    protected void SearchSubject(string UserFilter, string TitleFilter, string Order)
+    {
+        string cat_id = Session["cat_id"].ToString();
+        string author_id = Guid.Empty.ToString(); 
+        try { author_id = Membership.GetUser().ProviderUserKey.ToString(); }
+        catch (Exception ex) {}
+
+        string cmd = "SELECT Subject.Id as [Id], [Title], [Date], [LastUpdate], [UserName],"
+            + " CASE WHEN [AuthorId] = @AuthorId THEN 'Author' ELSE 'NotAuthor' END as [Editable]"
+            + " FROM [Subject]"
+            + " INNER JOIN [aspnet_Users] on [AuthorId] = [UserId]"
+            + " WHERE [CategoryId] = @CatId";
+
+        bool Descending = (Order == "Descending");
+        cmd += " AND LOWER([Title]) LIKE @TitleFilter";
+        cmd += " AND LOWER([UserName]) LIKE @UserFilter";
+        if (!Descending) cmd += " ORDER BY [Date]";
+        else cmd += " ORDER BY [Date] DESC";
+    
+        SubjectSqlDataSource.SelectCommand = cmd;
+        SubjectSqlDataSource.SelectParameters.Clear();
+        SubjectSqlDataSource.SelectParameters.Add("CatId", cat_id);
+        SubjectSqlDataSource.SelectParameters.Add("AuthorId", author_id);
+        SubjectSqlDataSource.SelectParameters.Add("TitleFilter", "%" + TitleFilter + "%");
+        SubjectSqlDataSource.SelectParameters.Add("UserFilter", "%" + UserFilter + "%");
+        SubjectSqlDataSource.DataBind();
+    }
+
+    protected void SubjectLoginView_ViewChanged(object source, EventArgs e)
+    {
+        SetLoginViewActions((LoginView)source);
+    }
+
+    protected void SetLoginViewActions(LoginView SubjectLoginView)
+    {
+        Button EditSubjectCategoryButton = (Button)SubjectLoginView.FindControl("EditSubjectCategoryButton");
+        HiddenField ItemIdHF = (HiddenField)SubjectLoginView.Parent.FindControl("ItemIdHF");
+
+        string ItemId = Guid.Parse(ItemIdHF.Value.ToString()).ToString();
+
+        if (EditSubjectCategoryButton != null)
+            EditSubjectCategoryButton.CommandArgument = ItemId;
+            
+    }
+}
