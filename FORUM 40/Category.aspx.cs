@@ -16,7 +16,7 @@ public partial class Category : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        // Label1.Text = "0 Users have rated this Product";
+         // Label1.Text = "0 Users have rated this Product";
         // Label2.Text = "Average rating for this Product is 0";
 
         if (Request.Params["cat_id"] != null)
