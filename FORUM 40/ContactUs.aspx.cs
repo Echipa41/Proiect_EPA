@@ -43,8 +43,6 @@ public partial class ContactUs : System.Web.UI.Page
             Label1.ForeColor = System.Drawing.Color.BlueViolet;
             Label1.ForeColor = System.Drawing.Color.Blue;
             Label1.Text = "S-a ivit o problema. Incercati mai tarziu";
-
-
         }
     }
 }
