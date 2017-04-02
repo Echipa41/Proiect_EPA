@@ -1,0 +1,38 @@
+F:\Facultate\Master II\Elemente de programare avansta\Test\Critical\obj\Debug\TestProject.csprojResolveAssemblyReference.cache
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\bin\Debug\wires-0.6.0-win.exe
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\bin\Debug\ForumTest.dll
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\bin\Debug\ForumTest.pdb
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\bin\Debug\WebDriver.dll
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\bin\Debug\WebDriver.Support.dll
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\bin\Debug\WebDriver.xml
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\bin\Debug\WebDriver.Support.xml
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\obj\Debug\ForumTest.dll
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\obj\Debug\ForumTest.pdb
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\bin\Debug\ForumTest.dll.config
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\bin\Debug\log4net.dll
+F:\Facultate\Master II\Elemente de programare avansta\Test\ForumTest\bin\Debug\log4net.xml
+D:\Push Model\Test\Test\ForumTest\obj\Debug\ForumTest.dll
+D:\Push Model\Test\Test\ForumTest\obj\Debug\ForumTest.pdb
+D:\Push Model\Test\Test\ForumTest\bin\Debug\wires-0.6.0-win.exe
+D:\Push Model\Test\Test\ForumTest\bin\Debug\ForumTest.dll.config
+D:\Push Model\Test\Test\ForumTest\bin\Debug\ForumTest.dll
+D:\Push Model\Test\Test\ForumTest\bin\Debug\ForumTest.pdb
+D:\Push Model\Test\Test\ForumTest\bin\Debug\log4net.dll
+D:\Push Model\Test\Test\ForumTest\bin\Debug\WebDriver.dll
+D:\Push Model\Test\Test\ForumTest\bin\Debug\WebDriver.Support.dll
+D:\Push Model\Test\Test\ForumTest\bin\Debug\log4net.xml
+D:\Push Model\Test\Test\ForumTest\bin\Debug\WebDriver.xml
+D:\Push Model\Test\Test\ForumTest\bin\Debug\WebDriver.Support.xml
+D:\Push Model\Test\Test\ForumTest\obj\Debug\TestProject.csprojResolveAssemblyReference.cache
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\bin\Debug\wires-0.6.0-win.exe
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\bin\Debug\ForumTest.dll.config
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\bin\Debug\ForumTest.dll
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\bin\Debug\ForumTest.pdb
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\bin\Debug\log4net.dll
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\bin\Debug\WebDriver.dll
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\bin\Debug\WebDriver.Support.dll
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\bin\Debug\log4net.xml
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\bin\Debug\WebDriver.xml
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\bin\Debug\WebDriver.Support.xml
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\obj\Debug\ForumTest.dll
+F:\Facultate\Master II\Elemente de programare avansta\New folder\Test\Test\ForumTest\obj\Debug\ForumTest.pdb
