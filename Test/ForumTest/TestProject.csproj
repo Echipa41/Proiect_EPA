@@ -72,6 +72,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Models\SignUpUser.cs" />
+    <Compile Include="PageObjects\SignUpPageObjects.cs" />
     <Compile Include="ProjectComponent\Constants.cs" />
     <Compile Include="Common\ImageUtils.cs" />
     <Compile Include="Common\Logger.cs" />

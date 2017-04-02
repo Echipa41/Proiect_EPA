@@ -34,5 +34,15 @@ namespace ForumTest.ProjectComponent
                 logOffButton.Click();
             }
         }
+
+        public static void SignUp(SignUpUser user)
+        {
+            SignUpPageObjects signUpPageObjects = new SignUpPageObjects();
+            signUpPageObjects.User.SendKeys(user.Username);
+            signUpPageObjects.Password.SendKeys(user.Password);
+            signUpPageObjects.ConfirmPassword.SendKeys(user.ConfirmPassword);
+            signUpPageObjects.Email.SendKeys(user.Email);
+            signUpPageObjects.CreateUserButton.Click();
+        }
     }
 }

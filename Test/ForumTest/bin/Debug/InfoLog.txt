@@ -1,12 +1,1 @@
-2017-04-01 20:47:36,045 [10] INFO  DiagnosticsAppender - -----------
-2017-04-01 20:54:19,241 [10] INFO  DiagnosticsAppender - -----------
-2017-04-01 20:57:18,132 [10] INFO  DiagnosticsAppender - -----------
-2017-04-01 20:58:42,662 [10] INFO  DiagnosticsAppender - -----------
-2017-04-01 21:02:23,883 [10] INFO  DiagnosticsAppender - -----------
-2017-04-01 21:08:06,088 [10] INFO  DiagnosticsAppender - -----------
-2017-04-01 21:09:32,189 [10] INFO  DiagnosticsAppender - -----------
-2017-04-01 21:30:40,610 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-01 23:02:38,357 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-01 23:03:18,721 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-01 23:04:57,869 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-01 23:06:02,006 [10] INFO  DiagnosticsAppender - Test Login:
+2017-04-02 16:55:22,897 [10] INFO  DiagnosticsAppender - Test Login:

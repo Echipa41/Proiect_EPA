@@ -1,7 +1,56 @@
-2017-04-01 20:47:36,090 [10] ERROR ErrorAppender - hahahaha System.Exception: hehehe
-2017-04-01 20:54:19,846 [10] ERROR ErrorAppender - hahahaha System.Exception: hehehe
-2017-04-01 20:57:18,893 [10] ERROR ErrorAppender - hahahaha System.Exception: hehehe
-2017-04-01 20:58:43,278 [10] ERROR ErrorAppender - hahahaha System.Exception: hehehe
-2017-04-01 21:02:24,433 [10] ERROR ErrorAppender - hahahaha System.Exception: hehehe
-2017-04-01 21:08:06,102 [10] ERROR ErrorAppender - hahahaha System.Exception: hehehe
-2017-04-01 21:09:32,201 [10] ERROR ErrorAppender - hahahaha System.Exception: hehehe
+2017-04-02 15:36:43,856 [10] ERROR ErrorAppender -  System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentNullException: text cannot be null
+Parameter name: text
+   at OpenQA.Selenium.Remote.RemoteWebElement.SendKeys(String text)
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OpenQA.Selenium.Support.PageObjects.WebDriverObjectProxy.InvokeMethod(IMethodCallMessage msg, Object representedValue)
+   at OpenQA.Selenium.Support.PageObjects.WebElementProxy.Invoke(IMessage msg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at OpenQA.Selenium.IWebElement.SendKeys(String text)
+   at ForumTest.ProjectComponent.LoginClass.SignUp(SignUpUser user) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\LoginClass.cs:line 41
+   at ForumTest.Test.TestClass.TestSignUp() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 56
+2017-04-02 15:37:31,952 [10] ERROR ErrorAppender -  System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentNullException: text cannot be null
+Parameter name: text
+   at OpenQA.Selenium.Remote.RemoteWebElement.SendKeys(String text)
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OpenQA.Selenium.Support.PageObjects.WebDriverObjectProxy.InvokeMethod(IMethodCallMessage msg, Object representedValue)
+   at OpenQA.Selenium.Support.PageObjects.WebElementProxy.Invoke(IMessage msg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at OpenQA.Selenium.IWebElement.SendKeys(String text)
+   at ForumTest.ProjectComponent.LoginClass.SignUp(SignUpUser user) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\LoginClass.cs:line 41
+   at ForumTest.Test.TestClass.TestSignUp() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 56
+2017-04-02 15:38:32,189 [10] ERROR ErrorAppender -  System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentNullException: text cannot be null
+Parameter name: text
+   at OpenQA.Selenium.Remote.RemoteWebElement.SendKeys(String text)
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OpenQA.Selenium.Support.PageObjects.WebDriverObjectProxy.InvokeMethod(IMethodCallMessage msg, Object representedValue)
+   at OpenQA.Selenium.Support.PageObjects.WebElementProxy.Invoke(IMessage msg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at OpenQA.Selenium.IWebElement.SendKeys(String text)
+   at ForumTest.ProjectComponent.LoginClass.SignUp(SignUpUser user) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\LoginClass.cs:line 41
+   at ForumTest.Test.TestClass.TestSignUp() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 56
+2017-04-02 15:39:37,879 [10] ERROR ErrorAppender -  System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentNullException: text cannot be null
+Parameter name: text
+   at OpenQA.Selenium.Remote.RemoteWebElement.SendKeys(String text)
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at OpenQA.Selenium.Support.PageObjects.WebDriverObjectProxy.InvokeMethod(IMethodCallMessage msg, Object representedValue)
+   at OpenQA.Selenium.Support.PageObjects.WebElementProxy.Invoke(IMessage msg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at OpenQA.Selenium.IWebElement.SendKeys(String text)
+   at ForumTest.ProjectComponent.LoginClass.SignUp(SignUpUser user) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\LoginClass.cs:line 41
+   at ForumTest.Test.TestClass.TestSignUp() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 56
