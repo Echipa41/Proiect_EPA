@@ -63,6 +63,16 @@ namespace ForumTest.SeleniumComponent
             return (IWebElement)executorJS.ExecuteScript("return arguments[0].parentNode;", webElement);
         }
 
+        public static IWebElement GetNextSibling(IWebElement webElement)
+        {
+            
+            IJavaScriptExecutor executorJS = (IJavaScriptExecutor)PropertiesCollection.Driver;
+            var siblings = (IList)executorJS.ExecuteScript("return arguments[0].nextSibling;", webElement);
+            var sib = GetChilds( GetParentNode(webElement));
+            return (IWebElement)siblings[0];
+           // return webElement.FindElement(By.XPath(".//following-sibling::*[1]"));
+        }
+
         public static IWebElement GetLastChild(IWebElement webElement)
         {
             IJavaScriptExecutor executorJS = (IJavaScriptExecutor)PropertiesCollection.Driver;
@@ -74,6 +84,13 @@ namespace ForumTest.SeleniumComponent
         {
             IJavaScriptExecutor executorJS = (IJavaScriptExecutor)PropertiesCollection.Driver;
             IWebElement tempElem = (IWebElement)executorJS.ExecuteScript("return arguments[0].firstChild;", webElement);
+            return tempElem;
+        }
+
+        public static IList GetChilds(IWebElement webElement)
+        {
+            IJavaScriptExecutor executorJS = (IJavaScriptExecutor)PropertiesCollection.Driver;
+            IList tempElem = (IList)executorJS.ExecuteScript("return arguments[0].childNodes ;", webElement);
             return tempElem;
         }
 

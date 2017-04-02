@@ -146,5 +146,27 @@ namespace ForumTest.Test
                 Assert.Fail(e.Message);
             }
         }
+
+        [TestMethod]
+        public void TestUserStory5()
+        {
+            try
+            {
+                const String INPUT_FILE = "User.xml";
+                User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
+
+                PropertiesCollection.OpenURL(Constants.START_URL);
+                Panel.Log_Click();
+                Authentication.Login(user);
+                Panel.Galerie_CLick();
+                
+                Sincronize.Wait(5000);
+            }
+            catch (Exception e)
+            {
+                Logger.LogException("", e);
+                Assert.Fail(e.Message);
+            }
+        }
     }
 }
