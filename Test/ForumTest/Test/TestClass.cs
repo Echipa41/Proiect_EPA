@@ -162,6 +162,10 @@ namespace ForumTest.Test
                 //var title = SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle"));
                 //var link = SeleniumGetMethods.GetNextSibling(title);
                // SeleniumGetMethods.GetFirstChild(link).Click();
+                SeleniumGetMethods.GetWebElementById("MainContent_CategoryListView_HyperLink1_0").Click();
+                var href = (IWebElement)SeleniumGetMethods.GetWebElementsByAttribut("href", "Subject.aspx?sub_id=")[3];
+                href.Click();
+
                 SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageListView$ctrl0$QuoteLoginView$QuoteMessageButton").Click();
                 Sincronize.Wait(5000);
             }
