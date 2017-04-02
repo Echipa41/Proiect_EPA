@@ -21,7 +21,7 @@ namespace ForumTest.ProjectComponent
 
         public static void Galerie_CLick()
         {
-            throw new NotImplementedException();
+            SeleniumGetMethods.GetWebElementInnerHTML("Galerie").Click();
         }
 
         public static void Cautare_CLick()

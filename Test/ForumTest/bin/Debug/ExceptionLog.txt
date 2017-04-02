@@ -54,3 +54,6 @@ Parameter name: text
    at OpenQA.Selenium.IWebElement.SendKeys(String text)
    at ForumTest.ProjectComponent.LoginClass.SignUp(SignUpUser user) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\LoginClass.cs:line 41
    at ForumTest.Test.TestClass.TestSignUp() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 56
+2017-04-02 19:09:27,969 [10] ERROR ErrorAppender -  System.NotImplementedException: The method or operation is not implemented.
+   at ForumTest.ProjectComponent.Panel.Galerie_CLick() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\Panel.cs:line 24
+   at ForumTest.Test.TestClass.TestUserStory2() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 93

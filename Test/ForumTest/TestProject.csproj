@@ -80,7 +80,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="PageObjects\LoginPageObjects.cs" />
     <Compile Include="ProjectComponent\FileUtils.cs" />
-    <Compile Include="ProjectComponent\LoginClass.cs" />
+    <Compile Include="ProjectComponent\Authentication.cs" />
     <Compile Include="ProjectComponent\Panel.cs" />
     <Compile Include="ProjectComponent\UserPanel.cs" />
     <Compile Include="SeleniumComponent\BrowserType.cs" />

@@ -10,7 +10,7 @@ using ForumTest.SeleniumComponent;
 
 namespace ForumTest.ProjectComponent
 {
-    internal class LoginClass
+    internal class Authentication
     {
         public static void Login(User user)
         {
