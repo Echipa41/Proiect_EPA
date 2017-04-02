@@ -22,6 +22,12 @@ namespace ForumTest.SeleniumComponent
 {
     class SeleniumSetMethods
     {
+        public static void ChangeTextForWebElement(IWebElement element, string value)
+        {
+            element.Clear();
+            element.SendKeys(value);
+        }
+
         public static void EnterText(IWebElement element, string givenValue)
         {
             element.SendKeys(givenValue); 

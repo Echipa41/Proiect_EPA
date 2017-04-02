@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 using ForumTest.Models;
 using ForumTest.PageObjects;
 using ForumTest.SeleniumComponent;
-
+using System.Globalization;
+using OpenQA.Selenium;
+using ForumTest.Common;
+using ForumTest.ProjectComponent;
+using ForumTest.Test;
 
 namespace ForumTest.ProjectComponent
 {
@@ -43,6 +47,46 @@ namespace ForumTest.ProjectComponent
             signUpPageObjects.ConfirmPassword.SendKeys(user.ConfirmPassword);
             signUpPageObjects.Email.SendKeys(user.Email);
             signUpPageObjects.CreateUserButton.Click();
+        }
+
+        public static void EditeProfile(UserProfile user)
+        {
+            UserProfilePageObjects userProfilePageObjects = new UserProfilePageObjects();
+            SeleniumSetMethods.ChangeTextForWebElement(userProfilePageObjects.FirstName, user.FirstName);
+            SeleniumSetMethods.ChangeTextForWebElement(userProfilePageObjects.LastName, user.LastName);
+            SeleniumSetMethods.ChangeTextForWebElement(userProfilePageObjects.BirthDate, GetDate(user.BirthDate));
+            SelectSex(user.Sex, userProfilePageObjects);
+            SeleniumSetMethods.ChangeTextForWebElement(userProfilePageObjects.City, user.City);
+            SeleniumSetMethods.ChangeTextForWebElement(userProfilePageObjects.Signature, user.Signature);
+
+            if(ImageUtils.IsValidImage(FileUtils.CreateInputPath(user.Photo)))
+                userProfilePageObjects.Photo.SendKeys(FileUtils.CreateInputPath(user.Photo));
+            userProfilePageObjects.Save.Click();
+        }
+
+        private static void SelectSex(string sex, UserProfilePageObjects userProfilePageObjects)
+        {
+            if (sex.Equals("F"))
+                userProfilePageObjects.SexF.Click();
+            else
+                userProfilePageObjects.SexM.Click();
+        }
+
+        private static bool CheckDate(string date)
+        {
+            DateTime Test;
+            if (DateTime.TryParseExact(date, "MM/dd/yyyy", null, DateTimeStyles.None, out Test) == true)
+                return true;
+            else
+                return false;
+        }
+
+        private static String GetDate(string date)
+        {
+            if (CheckDate(date))
+                return date;
+            else
+                return "";
         }
     }
 }

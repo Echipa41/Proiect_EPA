@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using System.Xml;
 using System.IO;
 using System.Xml.Serialization;
+using ForumTest.ProjectComponent;
 
 namespace ForumTest.Common
 {
@@ -22,7 +23,7 @@ namespace ForumTest.Common
             XmlReader reader = XmlReader.Create(fs);
             T obj = (T)serializer.Deserialize(reader);
             reader.Close();
-            fs.Close(); ForumTest.Test.FileUtils.CreateInputPath("hh");
+            fs.Close();
             return obj;
         }
 

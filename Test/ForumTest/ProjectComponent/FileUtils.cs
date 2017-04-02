@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace ForumTest.Test
+namespace ForumTest.ProjectComponent
 {
-    internal class FileUtils
+    public class FileUtils
     {
         private static string mDirectoryProject = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
 
-        internal static string CreateInputPath(string xmlFile)
+        internal static string CreateInputPath(string file)
         {
-            return mDirectoryProject + "\\" + Constants.DATA_INPUT_PATH + xmlFile;
+            return mDirectoryProject + "\\" + Constants.DATA_INPUT_PATH + file;
         }        
     }
 }

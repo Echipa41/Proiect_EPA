@@ -15,7 +15,7 @@ using System.IO;
 using ForumTest.PageObjects;
 using ForumTest.SeleniumComponent;
 using ForumTest.ProjectComponent;
-
+using ForumTest.Test;
 
 
 namespace ForumTest.Test
@@ -92,6 +92,32 @@ namespace ForumTest.Test
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Galerie_CLick();
                 Sincronize.Wait(5000);
+            }
+            catch(Exception e)
+            {
+                Logger.LogException("", e);
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestUserStory3()
+        {
+            try
+            {
+                const string INPUT_FILE = "UserProfile.xml";
+                const string USER_CREDENTIAL_FILE = "User.xml";
+                User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(USER_CREDENTIAL_FILE));
+                UserProfile userProfile = XML.DeserializeObject<UserProfile>(FileUtils.CreateInputPath(INPUT_FILE));
+
+                PropertiesCollection.OpenURL(Constants.START_URL);
+                Panel.Log_Click();
+                Authentication.Login(user);
+                UserPanel.ProfilulMeu_Click();
+                var editButton = SeleniumGetMethods.GetWebElementById("MainContent_EditProfileButton");
+                editButton.Click();
+               // SeleniumGetMethods.GetWebElementInnerHTML("Editeaza").Click();
+                Authentication.EditeProfile(userProfile);
             }
             catch(Exception e)
             {
