@@ -159,7 +159,10 @@ namespace ForumTest.Test
                 Panel.Log_Click();
                 Authentication.Login(user);
                 Panel.Galerie_CLick();
-                
+                //var title = SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle"));
+                //var link = SeleniumGetMethods.GetNextSibling(title);
+               // SeleniumGetMethods.GetFirstChild(link).Click();
+                SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageListView$ctrl0$QuoteLoginView$QuoteMessageButton").Click();
                 Sincronize.Wait(5000);
             }
             catch (Exception e)
