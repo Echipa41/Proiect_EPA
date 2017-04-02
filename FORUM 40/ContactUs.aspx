@@ -17,7 +17,7 @@
     </div>
 
             <div style="margin-left:350px; margin-top:10px">
-             <p style="font-family:Monotype Corsiva; font-size:x-large;"><b>Buna Roxana,  </b></p>
+             <p style="font-family:Monotype Corsiva; font-size:x-large;"><b>Buna Fractal Team,  </b></p>
             </div>
                        
             <table style="margin-left:100px">
@@ -117,8 +117,8 @@
 
          <div style="margin-left:350px; margin-top:30px">
             Sau, ma poti gasi si aici: 
-            <a href="https://www.facebook.com/roxana.a.sirghie" target="_blank"><img src="Styles/images/facebook_logo.jpg"</a>
-            <a href="https://twitter.com/s_roxana92" target="_blank"><img src="Styles/images/twitter.jpg"</a>
+            <a href="https://www.facebook.com/weLoveFractals/" target="_blank"><img src="Styles/images/facebook_logo.jpg"</a>
+            <a href="#" target="_blank"><img src="Styles/images/twitter.jpg"</a>
 
          </div>
         </fieldset>
