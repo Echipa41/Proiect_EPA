@@ -43,6 +43,26 @@ namespace ForumTest.Test
         }
 
         [TestMethod]
+        public void TestSignUp()
+        {
+            try
+            {
+                const String INPUT_FILE = "SignUpTest.xml";
+                SignUpUser user = XML.DeserializeObject<SignUpUser>(FileUtils.CreateInputPath(INPUT_FILE));
+
+                PropertiesCollection.OpenURL(Constants.START_URL);
+                Panel.Log_Click();
+                SeleniumGetMethods.GetWebElementInnerHTML("Inregistrati-va").Click();
+                Authentication.SignUp(user);
+            }
+            catch(Exception ex)
+            {
+                Logger.LogException("", ex);
+                Assert.Fail(ex.Message);
+            }
+        }              
+
+        [TestMethod]
         public void TestLogin()
         {
             Logger.LogInfo("Test Login:");
@@ -53,14 +73,30 @@ namespace ForumTest.Test
 
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
-                LoginClass.Login(user);
+                Authentication.Login(user);
                 Sincronize.Wait(6000);
-                ForumTest.ProjectComponent.LoginClass.LogOff();
+                ForumTest.ProjectComponent.Authentication.LogOff();
             }
             catch (Exception ex)
             {
                 Assert.Fail();
                 Logger.LogException("", ex);
+            }
+        }
+
+        [TestMethod]
+        public void TestUserStory2()
+        {
+            try
+            {
+                PropertiesCollection.OpenURL(Constants.START_URL);
+                Panel.Galerie_CLick();
+                Sincronize.Wait(5000);
+            }
+            catch(Exception e)
+            {
+                Logger.LogException("", e);
+                Assert.Fail(e.Message);
             }
         }
     }
