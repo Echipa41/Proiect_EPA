@@ -159,9 +159,11 @@ namespace ForumTest.Test
                 Panel.Log_Click();
                 Authentication.Login(user);
                 Panel.Galerie_CLick();
-                //var title = SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle"));
-                //var link = SeleniumGetMethods.GetNextSibling(title);
-               // SeleniumGetMethods.GetFirstChild(link).Click();
+                /*
+                var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
+               // var link = SeleniumGetMethods.GetNextSibling(title);
+                SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
+                */
                 SeleniumGetMethods.GetWebElementById("MainContent_CategoryListView_HyperLink1_0").Click();
                 var href = (IWebElement)SeleniumGetMethods.GetWebElementsByAttribut("href", "Subject.aspx?sub_id=")[3];
                 href.Click();

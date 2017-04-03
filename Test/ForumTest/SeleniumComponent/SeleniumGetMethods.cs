@@ -63,6 +63,32 @@ namespace ForumTest.SeleniumComponent
             return (IWebElement)executorJS.ExecuteScript("return arguments[0].parentNode;", webElement);
         }
 
+        public static IWebElement Parent(IWebElement e)
+        {
+            return e.FindElement(By.XPath(".."));
+        }
+
+        public static IWebElement GetNextSibling(IWebElement webElement)
+        {
+            //http://stackoverflow.com/questions/30407106/getting-next-sibling-element-using-xpath-and-selenium-for-java
+            return webElement.FindElement(By.XPath("following-sibling::*"));
+        }
+
+        public static IWebElement GetPrecedingSibling(IWebElement webElement)
+        {
+            return webElement.FindElement(By.XPath("preceding-sibling::*"));
+        }
+
+        public static IWebElement GetPrecedingSibling(int index, IWebElement element)
+        {
+            return element.FindElement(By.XPath("preceding-sibling::*[" + index + "]"));
+        }
+
+        public static IWebElement GetSibling(int index, IWebElement element)
+        {
+            return element.FindElement(By.XPath("following-sibling::*[" + index + "]"));
+        }
+        /*
         public static IWebElement GetNextSibling(IWebElement webElement)
         {
             
@@ -72,19 +98,28 @@ namespace ForumTest.SeleniumComponent
             return (IWebElement)siblings[0];
            // return webElement.FindElement(By.XPath(".//following-sibling::*[1]"));
         }
+        */
+        public static IWebElement GetChild(int index ,IWebElement webElement)
+        {
+            IReadOnlyList<IWebElement> childs = webElement.FindElements(By.XPath("./*"));
+            return childs.ElementAt(index - 1);
+        }
 
         public static IWebElement GetLastChild(IWebElement webElement)
         {
-            IJavaScriptExecutor executorJS = (IJavaScriptExecutor)PropertiesCollection.Driver;
+           /* IJavaScriptExecutor executorJS = (IJavaScriptExecutor)PropertiesCollection.Driver;
             IWebElement tempElem = (IWebElement)executorJS.ExecuteScript("return arguments[0].lastChild;", webElement);
-            return tempElem;
+            return tempElem;*/
+            IReadOnlyList<IWebElement> childs = webElement.FindElements(By.XPath("./*"));
+            return childs.ElementAt(childs.Count - 1);
         }
 
         public static IWebElement GetFirstChild(IWebElement webElement)
         {
-            IJavaScriptExecutor executorJS = (IJavaScriptExecutor)PropertiesCollection.Driver;
+            /*IJavaScriptExecutor executorJS = (IJavaScriptExecutor)PropertiesCollection.Driver;
             IWebElement tempElem = (IWebElement)executorJS.ExecuteScript("return arguments[0].firstChild;", webElement);
-            return tempElem;
+            return tempElem;*/
+            return webElement.FindElement(By.XPath("*"));
         }
 
         public static IList GetChilds(IWebElement webElement)
