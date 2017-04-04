@@ -148,7 +148,7 @@ namespace ForumTest.Test
         }
 
         [TestMethod]
-        public void TestUserStory5()
+        public void TestUserStory7()
         {
             try
             {
@@ -202,6 +202,37 @@ namespace ForumTest.Test
                 editeButton.Click();
                 var delete = SeleniumGetMethods.GetNextSibling(editeButton);
                 delete.Click();
+            }
+            catch (Exception e)
+            {
+                Logger.LogException("", e);
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestUserStory8()
+        {
+            try
+            {
+                const String INPUT_FILE = "User.xml";
+                User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
+                const String COMM = "HEheheh";
+
+                PropertiesCollection.OpenURL(Constants.START_URL);
+                Panel.Log_Click();
+                Authentication.Login(user);
+                Panel.Galerie_CLick();
+
+                var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
+                SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
+                SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML("Covor Sierpinski"))).Click();
+
+                SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageUserTB").SendKeys("Alex");
+                SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$Button2").Click();
+
+                SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageDescriptionTB").SendKeys("Foarte");
+                SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$Button2").Click();
             }
             catch (Exception e)
             {
