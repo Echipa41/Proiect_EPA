@@ -175,7 +175,34 @@ namespace ForumTest.Test
         }
 
         [TestMethod]
-        public void TestUserStory7()
+        public void TestUserStory6()
+        {
+            try
+            {
+                const String INPUT_FILE = "User.xml";
+                User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
+
+
+                PropertiesCollection.OpenURL(Constants.START_URL);
+                Panel.Log_Click();
+                Authentication.Login(user);
+                Panel.Galerie_CLick();
+
+                var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
+                SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
+                SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML("Covor Sierpinski"))).Click();
+               // SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageListView$ctrl0$QuoteLoginView$QuoteMessageButton").Click();
+                Sincronize.Wait(5000);
+            }
+            catch (Exception e)
+            {
+                Logger.LogException("", e);
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestUserStory11()
         {
             Logger.LogInfo("Test Login:");
             try

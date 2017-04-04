@@ -105,6 +105,11 @@ namespace ForumTest.SeleniumComponent
             return childs.ElementAt(index - 1);
         }
 
+        public static IWebElement GetWebElementByTagName(String tagName)
+        {
+            return PropertiesCollection.Driver.FindElement(By.TagName(tagName));
+        }
+
         public static IWebElement GetLastChild(IWebElement webElement)
         {
            /* IJavaScriptExecutor executorJS = (IJavaScriptExecutor)PropertiesCollection.Driver;
