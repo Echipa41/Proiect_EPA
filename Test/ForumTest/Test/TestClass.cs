@@ -55,12 +55,12 @@ namespace ForumTest.Test
                 SeleniumGetMethods.GetWebElementInnerHTML("Inregistrati-va").Click();
                 Authentication.SignUp(user);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.LogException("", ex);
                 Assert.Fail(ex.Message);
             }
-        }              
+        }
 
         [TestMethod]
         public void TestLogin()
@@ -93,7 +93,7 @@ namespace ForumTest.Test
                 Panel.Galerie_CLick();
                 Sincronize.Wait(5000);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.LogException("", e);
                 Assert.Fail(e.Message);
@@ -116,10 +116,10 @@ namespace ForumTest.Test
                 UserPanel.ProfilulMeu_Click();
                 var editButton = SeleniumGetMethods.GetWebElementById("MainContent_EditProfileButton");
                 editButton.Click();
-               // SeleniumGetMethods.GetWebElementInnerHTML("Editeaza").Click();
+                // SeleniumGetMethods.GetWebElementInnerHTML("Editeaza").Click();
                 Authentication.EditeProfile(userProfile);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.LogException("", e);
                 Assert.Fail(e.Message);
@@ -155,19 +155,15 @@ namespace ForumTest.Test
                 const String INPUT_FILE = "User.xml";
                 User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
 
+
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
                 Authentication.Login(user);
                 Panel.Galerie_CLick();
-                /*
-                var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
-               // var link = SeleniumGetMethods.GetNextSibling(title);
-                SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
-                */
-                SeleniumGetMethods.GetWebElementById("MainContent_CategoryListView_HyperLink1_0").Click();
-                var href = (IWebElement)SeleniumGetMethods.GetWebElementsByAttribut("href", "Subject.aspx?sub_id=")[3];
-                href.Click();
 
+                var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
+                SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
+                SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML("Covor Sierpinski"))).Click();
                 SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageListView$ctrl0$QuoteLoginView$QuoteMessageButton").Click();
                 Sincronize.Wait(5000);
             }
@@ -175,6 +171,34 @@ namespace ForumTest.Test
             {
                 Logger.LogException("", e);
                 Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestUserStory7()
+        {
+            Logger.LogInfo("Test Login:");
+            try
+            {
+                const String INPUT_FILE = "User.xml";
+                User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
+                const string USERNAME = "Ana";
+                const int SELECT_ROLE_INDEX = 4;
+                const int SAVE_BUTTON_INDEX = 5;
+
+                PropertiesCollection.OpenURL(Constants.START_URL);
+                Panel.Log_Click();
+                Authentication.Login(user);
+                AdminPanel.ProfilulMeu_Click();
+                AdminPanel.Administrare_Click();
+                var tr = SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML(USERNAME)));
+                var select = SeleniumGetMethods.GetChild(SELECT_ROLE_INDEX, tr);
+                var save = SeleniumGetMethods.GetChild(SAVE_BUTTON_INDEX, tr);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail();
+                Logger.LogException("", ex);
             }
         }
     }

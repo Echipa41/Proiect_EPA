@@ -101,7 +101,7 @@ namespace ForumTest.SeleniumComponent
         */
         public static IWebElement GetChild(int index ,IWebElement webElement)
         {
-            IReadOnlyList<IWebElement> childs = webElement.FindElements(By.XPath("./*"));
+            IReadOnlyList<IWebElement> childs = webElement.FindElements(By.XPath("./*"));//if use .//* return all childs from all level
             return childs.ElementAt(index - 1);
         }
 
