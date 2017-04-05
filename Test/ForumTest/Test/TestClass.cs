@@ -332,7 +332,7 @@ namespace ForumTest.Test
         }
 
         [TestMethod]
-        public void TestUserStory10()
+        public void TestUserStory9()
         {            
             try
             {
