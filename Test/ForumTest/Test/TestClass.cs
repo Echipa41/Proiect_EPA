@@ -330,5 +330,24 @@ namespace ForumTest.Test
                 Logger.LogException("", ex);
             }
         }
+
+        [TestMethod]
+        public void TestUserStory10()
+        {            
+            try
+            {
+                const String INPUT_FILE = "User.xml";
+                User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
+
+                PropertiesCollection.OpenURL(Constants.START_URL);
+                Panel.Log_Click();
+                Authentication.Login(user);                
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail();
+                Logger.LogException("", ex);
+            }
+        }
     }
 }
