@@ -22,9 +22,15 @@ namespace ForumTest.Test
 {
     [TestClass]
     public class TestClass
-    {
+    {   
+        [AssemblyInitialize]
+        public static void AssemblyInit()
+        {
+
+        }
+
         [ClassInitialize]
-        public static void SetUp(TestContext context)
+        public static void ClassInit(TestContext context)
         {
             //PropertiesCollection.Driver = new InternetExplorerDriver();
             //PropertiesCollection.Driver = new FirefoxDriver();
@@ -35,13 +41,30 @@ namespace ForumTest.Test
             Sincronize.SetPageLoad(60);
         }
 
+        [TestInitialize]
+        public void TestInit()
+        {
+
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+
+        }
+
         [ClassCleanup]
-        public static void Close()
+        public static void ClassCleanup()
         {
             if (PropertiesCollection.Driver != null)
                 PropertiesCollection.Driver.Quit();
         }
 
+        [AssemblyCleanup]
+        public static void AssemblyCleanup()
+        {
+
+        }
         [TestMethod]
         public void TestSignUp()
         {
