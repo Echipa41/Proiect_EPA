@@ -62,6 +62,7 @@ namespace ForumTest.ProjectComponent
             if(ImageUtils.IsValidImage(FileUtils.CreateInputPath(user.Photo)))
                 userProfilePageObjects.Photo.SendKeys(FileUtils.CreateInputPath(user.Photo));
             userProfilePageObjects.Save.Click();
+           // userProfilePageObjects.Cancel.Click(); daca vreau sa renunt 
         }
 
         private static void SelectSex(string sex, UserProfilePageObjects userProfilePageObjects)

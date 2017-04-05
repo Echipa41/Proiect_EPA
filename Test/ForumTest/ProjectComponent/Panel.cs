@@ -19,17 +19,17 @@ namespace ForumTest.ProjectComponent
             throw new NotImplementedException();
         }
 
-        public static void Galerie_CLick()
+        public static void Galerie_Click()
         {
             SeleniumGetMethods.GetWebElementInnerHTML("Galerie").Click();
         }
 
-        public static void Cautare_CLick()
+        public static void Cautare_Click()
         {
             throw new NotImplementedException();
         }
 
-        public static void Contact_CLick()
+        public static void Contact_Click()
         {
             throw new NotImplementedException();
         }

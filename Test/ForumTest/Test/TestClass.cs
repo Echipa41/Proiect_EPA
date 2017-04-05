@@ -65,6 +65,7 @@ namespace ForumTest.Test
         {
 
         }
+
         [TestMethod]
         public void TestUserStory1()
         {
@@ -113,7 +114,7 @@ namespace ForumTest.Test
             try
             {
                 PropertiesCollection.OpenURL(Constants.START_URL);
-                Panel.Galerie_CLick();
+                Panel.Galerie_Click();
                 Sincronize.Wait(5000);
             }
             catch (Exception e)
@@ -160,7 +161,7 @@ namespace ForumTest.Test
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
                 Authentication.Login(user);
-                Panel.Galerie_CLick();
+                Panel.Galerie_Click();
                 Sincronize.Wait(5000);
             }
             catch (Exception e)
@@ -182,7 +183,7 @@ namespace ForumTest.Test
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
                 Authentication.Login(user);
-                Panel.Galerie_CLick();
+                Panel.Galerie_Click();
 
                 var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
                 SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
@@ -210,7 +211,7 @@ namespace ForumTest.Test
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
                 Authentication.Login(user);
-                Panel.Galerie_CLick();
+                Panel.Galerie_Click();
 
                 var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
                 SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
@@ -246,7 +247,7 @@ namespace ForumTest.Test
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
                 Authentication.Login(user);
-                Panel.Galerie_CLick();
+                Panel.Galerie_Click();
 
                 var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
                 SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
@@ -257,7 +258,7 @@ namespace ForumTest.Test
 
                 SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageDescriptionTB").SendKeys("Foarte");
                 SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$Button2").Click();
-            }
+}
             catch (Exception e)
             {
                 Logger.LogException("", e);
@@ -277,7 +278,7 @@ namespace ForumTest.Test
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
                 Authentication.Login(user);
-                Panel.Galerie_CLick();
+                Panel.Galerie_Click();
 
                 var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
                 SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
@@ -341,7 +342,8 @@ namespace ForumTest.Test
 
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
-                Authentication.Login(user);                
+                Authentication.Login(user);
+                UserPanel.Contact_Click();
             }
             catch (Exception ex)
             {
