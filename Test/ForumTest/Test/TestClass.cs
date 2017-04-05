@@ -191,6 +191,8 @@ namespace ForumTest.Test
                 var citeaza = SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageListView$ctrl0$QuoteLoginView$QuoteMessageButton");
                 citeaza.Click();
                 Sincronize.Wait(5000);
+                SeleniumGetMethods.GetWebElementByAttribut("value", "Adauga comentariu").Click();
+                Sincronize.Wait(5000);
             }
             catch (Exception e)
             {
