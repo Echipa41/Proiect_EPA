@@ -46,7 +46,7 @@ namespace ForumTest.Test
         {
 
         }
-
+        
         [TestCleanup]
         public void TestCleanup()
         {
@@ -66,7 +66,7 @@ namespace ForumTest.Test
 
         }
         [TestMethod]
-        public void TestSignUp()
+        public void TestUserStory1()
         {
             try
             {
@@ -86,7 +86,7 @@ namespace ForumTest.Test
         }
 
         [TestMethod]
-        public void TestLogin()
+        public void TestUserStory3()
         {
             Logger.LogInfo("Test Login:");
             try
@@ -124,7 +124,7 @@ namespace ForumTest.Test
         }
 
         [TestMethod]
-        public void TestUserStory3()
+        public void TestUserStory4()
         {
             try
             {
@@ -150,7 +150,7 @@ namespace ForumTest.Test
         }
 
         [TestMethod]
-        public void TestUserStory4()
+        public void TestUserStory5()
         {
             try
             {
@@ -187,7 +187,8 @@ namespace ForumTest.Test
                 var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
                 SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
                 SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML("Covor Sierpinski"))).Click();
-                SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageListView$ctrl0$QuoteLoginView$QuoteMessageButton").Click();
+                var citeaza = SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageListView$ctrl0$QuoteLoginView$QuoteMessageButton");
+                citeaza.Click();
                 Sincronize.Wait(5000);
             }
             catch (Exception e)
