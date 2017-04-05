@@ -308,7 +308,7 @@ namespace ForumTest.Test
             Logger.LogInfo("Test Login:");
             try
             {
-                const String INPUT_FILE = "User.xml";
+                const String INPUT_FILE = "Admin.xml";
                 const String USER_ROLE_FILE = "UserRole.xml";
                 const int SELECT_ROLE_INDEX = 4;
                 const int SAVE_BUTTON_INDEX = 5;
