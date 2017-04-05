@@ -48,4 +48,3 @@ F:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\Forum
 F:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\bin\Debug\WebDriver.Support.xml
 F:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\obj\Debug\ForumTest.dll
 F:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\obj\Debug\ForumTest.pdb
-F:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\obj\Debug\TestProject.csprojResolveAssemblyReference.cache
