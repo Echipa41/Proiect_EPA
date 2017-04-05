@@ -266,7 +266,7 @@ namespace ForumTest.Test
         }
 
         [TestMethod]
-        public void TestUserStory9()
+        public void TestUserStory10()
         {
             try
             {
