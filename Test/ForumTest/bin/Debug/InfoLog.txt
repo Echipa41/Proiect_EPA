@@ -1,14 +1,2 @@
-2017-04-04 22:25:36,487 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:28:34,828 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:45:10,699 [11] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:45:45,986 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:46:21,074 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:47:13,060 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:48:49,362 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:51:49,398 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:53:18,295 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:54:39,248 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:55:32,156 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:57:36,469 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 22:59:13,100 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-04 23:00:37,428 [10] INFO  DiagnosticsAppender - Test Login:
+2017-04-05 21:49:50,230 [10] INFO  DiagnosticsAppender - Test Login:
+2017-04-05 21:51:24,274 [10] INFO  DiagnosticsAppender - Test Login:

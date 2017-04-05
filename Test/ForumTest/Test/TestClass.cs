@@ -24,7 +24,7 @@ namespace ForumTest.Test
     public class TestClass
     {   
         [AssemblyInitialize]
-        public static void AssemblyInit()
+        public static void AssemblyInit(TestContext context)
         {
 
         }
