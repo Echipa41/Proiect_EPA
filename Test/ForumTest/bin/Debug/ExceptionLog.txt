@@ -1,9 +1,0 @@
-2017-04-04 23:29:15,048 [10] ERROR ErrorAppender -  System.InvalidOperationException: disconnected: received Inspector.detached event
-  (Session info: chrome=57.0.2987.133)
-  (Driver info: chromedriver=2.24.417431 (9aea000394714d2fbb20850021f6204f2256b9cf),platform=Windows NT 10.0.14393 x86_64) (102)
-   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
-   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebDriver.InternalExecute(String driverCommandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebElement.Execute(String commandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebElement.SendKeys(String text)
-   at ForumTest.Test.TestClass.TestUserStory6() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 196

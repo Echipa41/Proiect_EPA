@@ -24,7 +24,7 @@ namespace ForumTest.Test
     public class TestClass
     {   
         [AssemblyInitialize]
-        public static void AssemblyInit()
+        public static void AssemblyInit(TestContext context)
         {
 
         }
@@ -266,7 +266,7 @@ namespace ForumTest.Test
         }
 
         [TestMethod]
-        public void TestUserStory9()
+        public void TestUserStory10()
         {
             try
             {
@@ -323,6 +323,25 @@ namespace ForumTest.Test
                 Sincronize.Wait(2000);
                 var save = SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(SAVE_BUTTON_INDEX, tr));
                 save.Click();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail();
+                Logger.LogException("", ex);
+            }
+        }
+
+        [TestMethod]
+        public void TestUserStory9()
+        {            
+            try
+            {
+                const String INPUT_FILE = "User.xml";
+                User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
+
+                PropertiesCollection.OpenURL(Constants.START_URL);
+                Panel.Log_Click();
+                Authentication.Login(user);                
             }
             catch (Exception ex)
             {
