@@ -22,7 +22,7 @@ namespace ForumTest.Test
 {
     [TestClass]
     public class TestClass
-    {   
+    {
         [AssemblyInitialize]
         public static void AssemblyInit(TestContext context)
         {
@@ -46,7 +46,7 @@ namespace ForumTest.Test
         {
 
         }
-        
+
         [TestCleanup]
         public void TestCleanup()
         {
@@ -56,8 +56,7 @@ namespace ForumTest.Test
         [ClassCleanup]
         public static void ClassCleanup()
         {
-            if (PropertiesCollection.Driver != null)
-                PropertiesCollection.Driver.Quit();
+            PropertiesCollection.QuitBroser();
         }
 
         [AssemblyCleanup]
@@ -177,21 +176,18 @@ namespace ForumTest.Test
             try
             {
                 const String INPUT_FILE = "User.xml";
+                const string SUBJECT = "Covor Sierpinski";
+                const string CATEGORY = "Fractali Turtle";
+                const string TEXT = "citezzzz";
                 User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
-
 
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
                 Authentication.Login(user);
                 Panel.Galerie_Click();
-
-                var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
-                SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
-                SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML("Covor Sierpinski"))).Click();
-                var citeaza = SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageListView$ctrl0$QuoteLoginView$QuoteMessageButton");
-                citeaza.Click();
-                Sincronize.Wait(5000);
-                SeleniumGetMethods.GetWebElementByAttribut("value", "Adauga comentariu").Click();
+                ForumClass.NavigateToCategory(CATEGORY);
+                ForumClass.NavigateToSubject(SUBJECT);
+                ForumClass.Citeaza(TEXT);               
                 Sincronize.Wait(5000);
             }
             catch (Exception e)
@@ -206,29 +202,21 @@ namespace ForumTest.Test
         {
             try
             {
-                const String INPUT_FILE = "User.xml";
-                User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
+                const String INPUT_FILE = "User.xml";                
                 const String COMM = "HEheheh";
+                const string SUBJECT = "Covor Sierpinski";
+                const string CATEGORY = "Fractali Turtle";
+                User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
 
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
                 Authentication.Login(user);
                 Panel.Galerie_Click();
-
-                var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
-                SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
-                SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML("Covor Sierpinski"))).Click();
-               // SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageListView$ctrl0$QuoteLoginView$QuoteMessageButton").Click();
-                var textarea = SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$AddMessageLoginView$MessageTB");
-                textarea.SendKeys(COMM);
-                SeleniumGetMethods.GetWebElementByAttribut("value", "Adauga comentariu").Click();
-                Sincronize.Wait(5000);
-                var commRootElem = SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML(COMM));
-                var childs = SeleniumGetMethods.GetChilds(commRootElem);               
-                var editeButton = SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetFirstChild((IWebElement)childs[3]));              
-                editeButton.Click();
-                var delete = SeleniumGetMethods.GetNextSibling(editeButton);
-                delete.Click();
+                ForumClass.NavigateToCategory(CATEGORY);
+                ForumClass.NavigateToSubject(SUBJECT);
+                ForumClass.AddComment(COMM);
+                ForumClass.EditeComment(COMM, ":) :D", false);
+                ForumClass.DeleteComment(COMM);
             }
             catch (Exception e)
             {
@@ -242,25 +230,23 @@ namespace ForumTest.Test
         {
             try
             {
-                const String INPUT_FILE = "User.xml";
+                const String INPUT_FILE = "User.xml";                
+                const String AUTOR = "Alex";
+                const String CONTINUT = "Foarte";
+                const string SUBJECT = "Covor Sierpinski";
+                const string CATEGORY = "Fractali Turtle";
                 User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
-                const String COMM = "HEheheh";
 
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
                 Authentication.Login(user);
                 Panel.Galerie_Click();
-
-                var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
-                SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
-                SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML("Covor Sierpinski"))).Click();
-
-                SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageUserTB").SendKeys("Alex");
-                SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$Button2").Click();
-
-                SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$MessageDescriptionTB").SendKeys("Foarte");
-                SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$Button2").Click();
-}
+                ForumClass.NavigateToCategory(CATEGORY);
+                ForumClass.NavigateToSubject(SUBJECT);
+                ForumClass.SearchAutor(AUTOR);
+                Sincronize.Wait(7500);
+                ForumClass.SearchContent(CONTINUT);
+            }
             catch (Exception e)
             {
                 Logger.LogException("", e);
@@ -274,26 +260,19 @@ namespace ForumTest.Test
             try
             {
                 const String INPUT_FILE = "User.xml";
+                const String COMMENT = "HEheheh";
+                const string SUBJECT = "Covor Sierpinski";
+                const string CATEGORY = "Fractali Turtle";
                 User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
-                const String COMM = "HEheheh";
 
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
                 Authentication.Login(user);
                 Panel.Galerie_Click();
-
-                var title = SeleniumGetMethods.Parent(SeleniumGetMethods.GetParentNode(SeleniumGetMethods.GetWebElementInnerHTML("Fractali Turtle")));
-                SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(2, title)).Click();
-                SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML("Covor Sierpinski"))).Click();
-                var textarea = SeleniumGetMethods.GetWebElementByName("ctl00$MainContent$AddMessageLoginView$MessageTB");
-                textarea.SendKeys(COMM);
-                SeleniumGetMethods.GetWebElementByAttribut("value", "Adauga comentariu").Click();
-                Sincronize.Wait(5000);
-                var commRootElem = SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML(COMM));
-                var childs = SeleniumGetMethods.GetChilds(commRootElem);
-                var editeButton = SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetFirstChild((IWebElement)childs[3]));                
-                var delete = SeleniumGetMethods.GetNextSibling(editeButton);
-                delete.Click();
+                ForumClass.NavigateToCategory(CATEGORY);
+                ForumClass.NavigateToSubject(SUBJECT);
+                ForumClass.AddComment(COMMENT);
+                ForumClass.DeleteComment(COMMENT);  
             }
             catch (Exception e)
             {
@@ -322,7 +301,7 @@ namespace ForumTest.Test
                 AdminPanel.Administrare_Click();
                 var tr = SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML(userRole.Username)));
                 var select = SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(SELECT_ROLE_INDEX, tr));
-                SeleniumSetMethods.SelectDropDown(select, userRole.Role);                
+                SeleniumSetMethods.SelectDropDown(select, userRole.Role);
                 Sincronize.Wait(2000);
                 var save = SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(SAVE_BUTTON_INDEX, tr));
                 save.Click();
@@ -336,7 +315,7 @@ namespace ForumTest.Test
 
         [TestMethod]
         public void TestUserStory9()
-        {            
+        {
             try
             {
                 const String INPUT_FILE = "User.xml";

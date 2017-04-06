@@ -31,7 +31,7 @@ namespace ForumTest.ProjectComponent
 
         public static void Contact_Click()
         {
-            throw new NotImplementedException();
+            SeleniumGetMethods.GetWebElementInnerHTML("Contact").Click();
         }
     }
 }

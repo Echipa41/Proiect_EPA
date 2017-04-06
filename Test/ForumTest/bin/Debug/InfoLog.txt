@@ -1,7 +1,0 @@
-2017-04-06 00:29:42,737 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-06 00:32:06,458 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-06 00:33:34,560 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-06 00:34:41,659 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-06 00:35:11,843 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-06 00:35:43,126 [10] INFO  DiagnosticsAppender - Test Login:
-2017-04-06 00:37:12,991 [10] INFO  DiagnosticsAppender - Test Login:

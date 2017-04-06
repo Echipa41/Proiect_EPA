@@ -66,8 +66,7 @@ namespace ForumTest.SeleniumComponent
         public static void OpenNewBroser(String URL, BrowserType.Browser type)
         {
             IWebDriver webDriver = null;
-            ChoseDriver(ref webDriver, type);
-            webDriver.Navigate().GoToUrl("http://www.pushmodelslocal.ro:8081/arizona-promo-models.php");
+            ChoseDriver(ref webDriver, type);            
             webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5000));
             webDriver.Navigate().GoToUrl(URL);
             Sincronize.Wait(3200);
@@ -78,8 +77,7 @@ namespace ForumTest.SeleniumComponent
         public static void OpenAnotherBroser(String URL, BrowserType.Browser type)
         {
             IWebDriver webDriver = null;
-            ChoseDriver(ref webDriver, type);
-            webDriver.Navigate().GoToUrl("http://www.pushmodelslocal.ro:8081/arizona-promo-models.php");
+            ChoseDriver(ref webDriver, type);            
             webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5000));
             webDriver.Navigate().GoToUrl(URL);
             Sincronize.Wait(3200);
@@ -87,19 +85,34 @@ namespace ForumTest.SeleniumComponent
             mDriver = webDriver;
         }
 
-        public void QuitBroser()
+        public static void QuitBroser()
         {
             mDriver.Quit();
         }
 
-        public void CloseBrowser()
+        public static void CloseBrowser()
         {
             mDriver.Close();
+        }
+
+        public static void DisposeBrowser()
+        {
+            mDriver.Dispose();
         }
 
         public static void Refresh()
         {
             mDriver.Navigate().Refresh();
+        }
+
+        public static void Back()
+        {
+            mDriver.Navigate().Back();
+        }
+
+        public static void Forward()
+        {
+            mDriver.Navigate().Forward();
         }
 
         public static void ChromeMobileDeviceStart(String device)
