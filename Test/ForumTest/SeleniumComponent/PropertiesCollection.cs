@@ -22,7 +22,17 @@ using OpenQA.Selenium.Edge;
 
 namespace ForumTest.SeleniumComponent
 {
-    enum Identifiers { Id, Name, ClassName, LinkText, CssName, TagName, XPath }
+    enum Identifiers 
+    { 
+        Id, 
+        Name, 
+        ClassName, 
+        LinkText, 
+        CssName, 
+        TagName, 
+        XPath 
+    }
+
     class PropertiesCollection
     {
         private static IWebDriver mDriver = null;
@@ -63,7 +73,7 @@ namespace ForumTest.SeleniumComponent
             }
         }
 
-        public static void OpenNewBroser(String URL, BrowserType.Browser type)
+        public static void OpenNewBrowser(String URL, BrowserType.Browser type)
         {
             IWebDriver webDriver = null;
             ChoseDriver(ref webDriver, type);            
@@ -74,7 +84,7 @@ namespace ForumTest.SeleniumComponent
         }
 
         //Same method but close first brower
-        public static void OpenAnotherBroser(String URL, BrowserType.Browser type)
+        public static void OpenAnotherBrowser(String URL, BrowserType.Browser type)
         {
             IWebDriver webDriver = null;
             ChoseDriver(ref webDriver, type);            
@@ -85,7 +95,7 @@ namespace ForumTest.SeleniumComponent
             mDriver = webDriver;
         }
 
-        public static void QuitBroser()
+        public static void QuitBrowser()
         {
             mDriver.Quit();
         }
@@ -121,7 +131,6 @@ namespace ForumTest.SeleniumComponent
             chromeOptions.EnableMobileEmulation(device);
             PropertiesCollection.Driver = new ChromeDriver(chromeOptions);
         }
-
         
         private static int GetIndexOfCurrentWindow()
         {
