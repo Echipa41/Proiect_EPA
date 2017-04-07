@@ -56,7 +56,7 @@ namespace ForumTest.Test
         [ClassCleanup]
         public static void ClassCleanup()
         {
-            PropertiesCollection.QuitBroser();
+            PropertiesCollection.QuitBrowser();
         }
 
         [AssemblyCleanup]
@@ -283,14 +283,11 @@ namespace ForumTest.Test
 
         [TestMethod]
         public void TestUserStory11()
-        {
-            Logger.LogInfo("Test Login:");
+        {            
             try
             {
                 const String INPUT_FILE = "Admin.xml";
-                const String USER_ROLE_FILE = "UserRole.xml";
-                const int SELECT_ROLE_INDEX = 4;
-                const int SAVE_BUTTON_INDEX = 5;
+                const String USER_ROLE_FILE = "UserRole.xml";                
                 User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
                 UserRole userRole = XML.DeserializeObject<UserRole>(FileUtils.CreateInputPath(USER_ROLE_FILE));
 
@@ -299,12 +296,7 @@ namespace ForumTest.Test
                 Authentication.Login(user);
                 AdminPanel.ProfilulMeu_Click();
                 AdminPanel.Administrare_Click();
-                var tr = SeleniumGetMethods.Parent(SeleniumGetMethods.Parent(SeleniumGetMethods.GetWebElementInnerHTML(userRole.Username)));
-                var select = SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(SELECT_ROLE_INDEX, tr));
-                SeleniumSetMethods.SelectDropDown(select, userRole.Role);
-                Sincronize.Wait(2000);
-                var save = SeleniumGetMethods.GetFirstChild(SeleniumGetMethods.GetChild(SAVE_BUTTON_INDEX, tr));
-                save.Click();
+                Administration.GetRole(userRole);
             }
             catch (Exception ex)
             {

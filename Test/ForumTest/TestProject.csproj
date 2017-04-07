@@ -77,6 +77,7 @@
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="PageObjects\SignUpPageObjects.cs" />
     <Compile Include="PageObjects\UserProfilePageObjects.cs" />
+    <Compile Include="ProjectComponent\Administration.cs" />
     <Compile Include="ProjectComponent\AdminPanel.cs" />
     <Compile Include="ProjectComponent\Constants.cs" />
     <Compile Include="Common\ImageUtils.cs" />
