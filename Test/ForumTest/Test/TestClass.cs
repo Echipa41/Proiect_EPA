@@ -96,9 +96,8 @@ namespace ForumTest.Test
 
                 PropertiesCollection.OpenURL(Constants.START_URL);
                 Panel.Log_Click();
-                Authentication.Login(user);
-                Sincronize.Wait(6000);
-                ForumTest.ProjectComponent.Authentication.LogOff();
+                Authentication.Login(user);               
+               // ForumTest.ProjectComponent.Authentication.LogOff();
             }
             catch (Exception ex)
             {
@@ -204,6 +203,7 @@ namespace ForumTest.Test
             {
                 const String INPUT_FILE = "User.xml";                
                 const String COMM = "HEheheh";
+                const String NEW_COMM = "change";
                 const string SUBJECT = "Covor Sierpinski";
                 const string CATEGORY = "Fractali Turtle";
                 User user = XML.DeserializeObject<User>(FileUtils.CreateInputPath(INPUT_FILE));
@@ -215,8 +215,8 @@ namespace ForumTest.Test
                 ForumClass.NavigateToCategory(CATEGORY);
                 ForumClass.NavigateToSubject(SUBJECT);
                 ForumClass.AddComment(COMM);
-                ForumClass.EditeComment(COMM, ":) :D", false);
-                ForumClass.DeleteComment(COMM);
+                ForumClass.EditeComment(COMM, NEW_COMM, false);
+                ForumClass.DeleteComment(NEW_COMM);
             }
             catch (Exception e)
             {

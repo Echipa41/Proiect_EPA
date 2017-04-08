@@ -1,31 +1,41 @@
-2017-04-07 00:35:53,471 [10] ERROR ErrorAppender -  OpenQA.Selenium.InvalidElementStateException: invalid element state: Element is not currently interactable and may not be manipulated
+2017-04-08 15:13:32,573 [16] ERROR ErrorAppender -  OpenQA.Selenium.InvalidElementStateException: invalid element state: Element is not currently interactable and may not be manipulated
   (Session info: chrome=57.0.2987.133)
   (Driver info: chromedriver=2.24.417431 (9aea000394714d2fbb20850021f6204f2256b9cf),platform=Windows NT 10.0.14393 x86_64)
    at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
    at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebDriver.InternalExecute(String driverCommandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebElement.Execute(String commandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebElement.Clear()
-   at ForumTest.ProjectComponent.ForumClass.AddComment(String comment) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\ForumClass.cs:line 28
-   at ForumTest.ProjectComponent.ForumClass.EditeComment(String originalComment, String newComment, Boolean append) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\ForumClass.cs:line 43
-   at ForumTest.Test.TestClass.TestUserStory6() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 218
-2017-04-07 00:44:01,184 [10] ERROR ErrorAppender -  OpenQA.Selenium.ElementNotVisibleException: element not visible
-  (Session info: chrome=57.0.2987.133)
-  (Driver info: chromedriver=2.24.417431 (9aea000394714d2fbb20850021f6204f2256b9cf),platform=Windows NT 10.0.14393 x86_64)
-   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
-   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebDriver.InternalExecute(String driverCommandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebElement.Execute(String commandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebElement.Click()
-   at ForumTest.ProjectComponent.ForumClass.EditeComment(String originalComment, String newComment, Boolean append) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\ForumClass.cs:line 53
-   at ForumTest.Test.TestClass.TestUserStory6() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 218
-2017-04-07 00:50:37,096 [10] ERROR ErrorAppender -  OpenQA.Selenium.InvalidElementStateException: invalid element state: Element is not currently interactable and may not be manipulated
-  (Session info: chrome=57.0.2987.133)
-  (Driver info: chromedriver=2.24.417431 (9aea000394714d2fbb20850021f6204f2256b9cf),platform=Windows NT 10.0.14393 x86_64)
-   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
-   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebDriver.InternalExecute(String driverCommandToExecute, Dictionary`2 parameters)
-   at OpenQA.Selenium.Remote.RemoteWebElement.Execute(String commandToExecute, Dictionary`2 parameters)
    at OpenQA.Selenium.Remote.RemoteWebElement.Clear()
    at ForumTest.ProjectComponent.ForumClass.EditeComment(String originalComment, String newComment, Boolean append) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\ForumClass.cs:line 45
+   at ForumTest.Test.TestClass.TestUserStory6() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 217
+2017-04-08 15:16:10,690 [17] ERROR ErrorAppender -  OpenQA.Selenium.WebDriverException: The HTTP request to the remote WebDriver server for URL http://localhost:52777/session/8acaa32a54d273b8c4a6cc2d0bfdbe3b/element timed out after 60 seconds. ---> System.Net.WebException: The request was aborted: The operation has timed out.
+   at System.Net.HttpWebRequest.GetResponse()
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.CreateResponse(WebRequest request)
+   --- End of inner exception stack trace ---
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.CreateResponse(WebRequest request)
+   at OpenQA.Selenium.Remote.HttpCommandExecutor.Execute(Command commandToExecute)
+   at OpenQA.Selenium.Remote.DriverServiceCommandExecutor.Execute(Command commandToExecute)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath)
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context)
+   at OpenQA.Selenium.By.FindElement(ISearchContext context)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by)
+   at ForumTest.SeleniumComponent.SeleniumGetMethods.GetWebElementInnerHTML(String Text) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\SeleniumComponent\SeleniumGetMethods.cs:line 57
+   at ForumTest.ProjectComponent.ForumClass.DeleteComment(String comment) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\ForumClass.cs:line 57
+   at ForumTest.Test.TestClass.TestUserStory6() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 218
+2017-04-08 15:17:33,151 [20] ERROR ErrorAppender -  System.NullReferenceException: Object reference not set to an instance of an object.
+   at ForumTest.SeleniumComponent.SeleniumGetMethods.Parent(IWebElement e) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\SeleniumComponent\SeleniumGetMethods.cs:line 68
+   at ForumTest.ProjectComponent.ForumClass.DeleteComment(String comment) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\ForumClass.cs:line 57
+   at ForumTest.Test.TestClass.TestUserStory6() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 218
+2017-04-08 15:18:07,160 [7] ERROR ErrorAppender -  System.InvalidOperationException: disconnected: received Inspector.detached event
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.24.417431 (9aea000394714d2fbb20850021f6204f2256b9cf),platform=Windows NT 10.0.14393 x86_64) (102)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElementByXPath(String xpath)
+   at OpenQA.Selenium.By.<>c__DisplayClasse.<XPath>b__c(ISearchContext context)
+   at OpenQA.Selenium.By.FindElement(ISearchContext context)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(By by)
+   at ForumTest.SeleniumComponent.SeleniumGetMethods.GetWebElementInnerHTML(String Text) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\SeleniumComponent\SeleniumGetMethods.cs:line 57
+   at ForumTest.ProjectComponent.ForumClass.DeleteComment(String comment) in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\ProjectComponent\ForumClass.cs:line 57
    at ForumTest.Test.TestClass.TestUserStory6() in f:\Facultate\Master II\Elemente de programare avansta\Git\Proiect_EPA\Test\ForumTest\Test\TestClass.cs:line 218

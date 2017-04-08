@@ -28,8 +28,7 @@ namespace ForumTest.ProjectComponent
             textarea.Clear();
             textarea.SendKeys(comment);
             var addCommentButton = SeleniumGetMethods.GetWebElementByAttribut("value", "Adauga comentariu");
-            addCommentButton.Click();
-            Sincronize.Wait(5000);
+            addCommentButton.Click();           
         }
 
         public static void EditeComment(String originalComment, String newComment, bool append)
@@ -50,8 +49,7 @@ namespace ForumTest.ProjectComponent
             }
             textarea.SendKeys(newComment);
             var addCommentButton = SeleniumGetMethods.GetWebElementByAttribut("value", "Salveaza");
-            addCommentButton.Click();
-            Sincronize.Wait(5000);
+            addCommentButton.Click();           
         }
 
         public static void DeleteComment(String comment)
